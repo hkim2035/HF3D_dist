@@ -624,35 +624,6 @@ if filename[-3:].lower()=="dat":
         borderwidth=0,
     )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     row21, row22, row23 = st.columns([1,1,1])
     with row21:
         st.plotly_chart(fig7, use_container_width=True) 
