@@ -124,7 +124,7 @@ if filename[-3:].lower()=="dat":
     infofile = filename[:-3]+"info"
 
     if os.path.isfile(infofile):
-        try:
+        #try:
             f = open(infofile, mode='r', encoding='utf-8')
             info = f.readlines()
             test = info[1].replace('\n','')
@@ -142,8 +142,8 @@ if filename[-3:].lower()=="dat":
             if lat != 0:
                 st.markdown(f"Latitude, longitude: {lat}, {lng}")
                 BH_and_wsm_func(WSM_file,lat,lng)
-        except all:
-            st.sidebar.write("info file...")
+        #except all:
+            #st.sidebar.write("info file...")
 
 
     # reading dat file
