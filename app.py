@@ -2,7 +2,6 @@
 import io
 import math
 import os
-from tkinter import font
 
 import branca
 import folium
