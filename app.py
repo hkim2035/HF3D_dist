@@ -143,7 +143,7 @@ if filename[-3:].lower()=="dat":
                 st.markdown(f"Latitude, longitude: {lat}, {lng}")
                 BH_and_wsm_func(WSM_file,lat,lng)
         except all:
-            st.sidebar.write("info 파일 검토 바람")
+            st.sidebar.write("info file...")
 
 
     # reading dat file
