@@ -113,7 +113,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-WSM_file = '.\wsm2016.csv'
+WSM_file = 'wsm2016.csv'
 
 st.sidebar.title = "HF3Dpy"    
 filename = file_selector()
