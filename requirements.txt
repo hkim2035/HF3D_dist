@@ -47,6 +47,7 @@ scipy==1.9.2
 semver==2.13.0
 six==1.16.0
 smmap==5.0.0
+statsmodels==0.13.2
 streamlit==1.13.0
 streamlit-folium==0.6.15
 tenacity==8.1.0
