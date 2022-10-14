@@ -630,7 +630,7 @@ if filename[-3:].lower()=="dat":
     with row22:
         st.plotly_chart(fig8, use_container_width=True) 
     with row23:
-        st.pyplot(fig6, use_container_width=True)    
+        st.pyplot(fig6)    
             
 
 
