@@ -438,9 +438,9 @@ if filename[-3:].lower()=="dat":
 # Set up the figure
     fig6 = plt.figure()
     
-    ax1 = fig6.add_subplot(221, projection="stereonet")
-    ax2 = fig6.add_subplot(223, projection="stereonet")
-    ax3 = fig6.add_subplot(224, projection="stereonet")
+    ax1 = fig6.add_subplot(311, projection="stereonet")
+    ax2 = fig6.add_subplot(312, projection="stereonet")
+    ax3 = fig6.add_subplot(313, projection="stereonet")
 
     ax1.set_azimuth_ticks([])
     ax2.set_azimuth_ticks([])
