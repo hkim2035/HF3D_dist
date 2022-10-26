@@ -23,10 +23,6 @@ from streamlit_folium import st_folium
 
 
 
-
-
-
-
 def fs(nn: int, deg: list):
     nnn = np.repeat(nn, len(deg))
     return np.array(list(map(lambda ldeg, lnn: math.sin(math.radians(ldeg))**lnn, deg, nnn)))
@@ -114,6 +110,7 @@ st.set_page_config(
 )
 
 WSM_file = 'wsm2016.csv'
+filename = ""
 
 st.sidebar.title = "HF3Dpy"    
 filename = file_selector()
