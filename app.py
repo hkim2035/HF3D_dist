@@ -649,4 +649,4 @@ if filename[-3:].lower()=="dat":
        key='download-csv'
     )
 else:
-    st.selectbox(key='input', index=0)
+    pass
