@@ -635,8 +635,18 @@ if filename[-3:].lower()=="dat":
         st.plotly_chart(fig8, use_container_width=True) 
     with row32:
         st.pyplot(fig6)    
-            
+        
+@st.experimental_memo
+def convert_df(df):
+   return df.to_csv(index=False).encode('utf-8')
 
+csv = convert_df(df)
 
-
+st.download_button(
+   "Press to Download",
+   csv,
+   f"{test}_result.csv",
+   "text/csv",
+   key='download-csv'
+)
 
