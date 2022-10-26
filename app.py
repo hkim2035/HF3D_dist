@@ -96,8 +96,8 @@ def BH_and_wsm_func(WSM_file, lat, lng):
 def file_selector(folder_path='.'):
 
     filenames = os.listdir(folder_path)
-    print(filenames)
-    selected_filename = st.sidebar.selectbox('Select a file', filenames)
+    #print(filenames)
+    selected_filename = st.selectbox('Select a file', filenames)
     return os.path.join(folder_path, selected_filename)
 
 
@@ -108,17 +108,17 @@ st.set_page_config(
     page_title="HF3Dpy",
     page_icon="💻",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 WSM_file = 'wsm2016.csv'
 
 
-st.sidebar.title = "HF3Dpy"    
+st.title = "HF3Dpy"    
 filename = file_selector()
 
 if filename[-3:].lower()=="dat":
-    st.sidebar.write('You selected `%s`' % filename)
+    st.write('You selected `%s`' % filename)
 
     infofile = filename[:-3]+"info"
 
@@ -142,7 +142,7 @@ if filename[-3:].lower()=="dat":
                 st.markdown(f"Latitude, longitude: {lat}, {lng}")
                 BH_and_wsm_func(WSM_file,lat,lng)
         #except all:
-            #st.sidebar.write("info file...")
+            #st.write("info file...")
 
 
     # reading dat file
