@@ -114,7 +114,7 @@ st.set_page_config(
 WSM_file = 'wsm2016.csv'
 
 
-st.markdown = "# HF3D"    
+st.markdown = "## HF3D"    
 filename = file_selector()
 
 if filename[-3:].lower()=="dat":
