@@ -89,7 +89,7 @@ def BH_and_wsm_func(WSM_file, lat, lng):
         
     st_folium(m, width=1800)
     st.markdown(f"### WSM data from the 5 points cloest to {test}")
-    st.table(kor_sorted[0:5])
+    st.dataframe(kor_sorted[0:5])
     st.markdown("World Stress Map https://datapub.gfz-potsdam.de/download/10.5880.WSM.2016.001/")
 
 
@@ -186,11 +186,11 @@ if filename[-3:].lower()=="dat":
                       psm-psc_final, fSV-(cburden+cden*(mdep-cz0)), fSN, fSE, fSV, fSNE, fSEV, fSVN])
     df = df.T
     
-    df = df.astype({'Fracture_type':'int'})
-    
     df.columns = ["Fracture_type", "mdepth", "tdepth", "depth", "Psc", "Psm",
                   "tolPs", "tolPv", "PN", "PE", "PV", "PNE", "PEV", "PVN"]        
 
+    df = df.astype({'Fracture_type':'int', 'mdepth':'float'})
+    pd.options.display.float_format = '{:,.2f}'.format
 
     # ---- Stereonet -------
     mag = [[] for i in range(3)]
@@ -225,7 +225,7 @@ if filename[-3:].lower()=="dat":
     y3 = [xx[1] for xx in df["P3vec"]]
     z3 = [xx[2] for xx in df["P3vec"]]            
 
-    st.table(df)          
+    st.dataframe(df)          
 
 
     ## fig 1
@@ -426,14 +426,12 @@ if filename[-3:].lower()=="dat":
     )
     
 
-    row11, row12, row13 = st.columns(3)
+    row11, row12 = st.columns(2)
     with row11:
         st.plotly_chart(fig1, use_container_width=True) 
     with row12:
         st.plotly_chart(fig2, use_container_width=True) 
-    with row13:
-        st.plotly_chart(fig4, use_container_width=True) 
-        
+            
         
 
 # Set up the figure
@@ -625,12 +623,16 @@ if filename[-3:].lower()=="dat":
         borderwidth=0,
     )
 
-    row21, row22, row23 = st.columns([1,1,1])
+    row21, row22 = st.columns([1,1])
     with row21:
-        st.plotly_chart(fig7, use_container_width=True) 
+        st.plotly_chart(fig4, use_container_width=True) 
     with row22:
+        st.plotly_chart(fig7, use_container_width=True) 
+
+    row31, row32 = st.columns([1,1])        
+    with row31:
         st.plotly_chart(fig8, use_container_width=True) 
-    with row23:
+    with row32:
         st.pyplot(fig6)    
             
 
