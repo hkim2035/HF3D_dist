@@ -96,6 +96,7 @@ def BH_and_wsm_func(WSM_file, lat, lng):
 def file_selector(folder_path='.'):
 
     filenames = os.listdir(folder_path)
+    print(filenames)
     selected_filename = st.sidebar.selectbox('Select a file', filenames)
     return os.path.join(folder_path, selected_filename)
 
