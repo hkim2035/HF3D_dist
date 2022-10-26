@@ -94,6 +94,7 @@ def BH_and_wsm_func(WSM_file, lat, lng):
 
 
 def file_selector(folder_path='.'):
+    st.sidebar.selectbox = ""
     filenames = os.listdir(folder_path)
     selected_filename = st.sidebar.selectbox('Select a file', filenames)
     return os.path.join(folder_path, selected_filename)
@@ -184,6 +185,9 @@ if filename[-3:].lower()=="dat":
     df = pd.DataFrame([fi, mdep, cz0, mdep-cz0, psc_final, psm,
                       psm-psc_final, fSV-(cburden+cden*(mdep-cz0)), fSN, fSE, fSV, fSNE, fSEV, fSVN])
     df = df.T
+    
+    df.astype({'Fracture_type':'int'})
+    
     df.columns = ["Fracture_type", "mdepth", "tdepth", "depth", "Psc", "Psm",
                   "tolPs", "tolPv", "PN", "PE", "PV", "PNE", "PEV", "PVN"]        
 
