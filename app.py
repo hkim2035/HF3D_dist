@@ -82,7 +82,7 @@ def BH_and_wsm_func(WSM_file, lat, lng):
     kor['dist_wsm_src(km)'] = list(map(lambda slat,slng: haversine((lat,lng),(slat,slng), unit='km'), kor['LAT'], kor['LON']))
     kor_sorted = kor.sort_values(by=['dist_wsm_src(km)'])[['ID','dist_wsm_src(km)','TYPE','DEPTH','QUALITY','REGIME','LOCALITY','DATE','NUMBER','SD','METHOD','S1AZ','S1PL','S2AZ','S2PL','S3AZ','S3PL','MAG_INT_S1','SLOPES1','MAG_INT_S2','SLOPES2','MAG_INT_S3','SLOPES3']]
         
-    m = folium.Map(location=[lat, lng], zoom_start=14, width=1600, height=1000)
+    m = folium.Map(location=[lat, lng], zoom_start=14, width=2000, height=1000)
     
     folium.Marker([lat,lng], popup=test,tooltip=test).add_to(m)
     kor.apply(lambda row:folium.CircleMarker([row['LAT'],row['LON']], popup=row['ID'], tooltip=row['ID'], radius=5, color='black', fill='gray').add_to(m), axis=1)
