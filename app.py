@@ -82,12 +82,12 @@ def BH_and_wsm_func(WSM_file, lat, lng):
     kor['dist_wsm_src(km)'] = list(map(lambda slat,slng: haversine((lat,lng),(slat,slng), unit='km'), kor['LAT'], kor['LON']))
     kor_sorted = kor.sort_values(by=['dist_wsm_src(km)'])[['ID','dist_wsm_src(km)','TYPE','DEPTH','QUALITY','REGIME','LOCALITY','DATE','NUMBER','SD','METHOD','S1AZ','S1PL','S2AZ','S2PL','S3AZ','S3PL','MAG_INT_S1','SLOPES1','MAG_INT_S2','SLOPES2','MAG_INT_S3','SLOPES3']]
         
-    m = folium.Map(location=[lat, lng], zoom_start=14, width=1800, height=1200)
+    m = folium.Map(location=[lat, lng], zoom_start=14, width=1600, height=1000)
     
     folium.Marker([lat,lng], popup=test,tooltip=test).add_to(m)
     kor.apply(lambda row:folium.CircleMarker([row['LAT'],row['LON']], popup=row['ID'], tooltip=row['ID'], radius=5, color='black', fill='gray').add_to(m), axis=1)
         
-    st_folium(m, width=1800)
+    st_folium(m)
     st.markdown(f"### WSM data from the 5 points cloest to {test}")
     st.dataframe(kor_sorted[0:5])
     st.markdown("World Stress Map https://datapub.gfz-potsdam.de/download/10.5880.WSM.2016.001/")
@@ -97,7 +97,7 @@ def file_selector(folder_path='.'):
 
     filenames = os.listdir(folder_path)
     #print(filenames)
-    selected_filename = st.selectbox('Select a file', filenames)
+    selected_filename = st.selectbox('Select a file', filenames, index=0, key='input')
     return os.path.join(folder_path, selected_filename)
 
 
@@ -114,7 +114,7 @@ st.set_page_config(
 WSM_file = 'wsm2016.csv'
 
 
-st.title = "HF3Dpy"    
+st.markdown = "# HF3D"    
 filename = file_selector()
 
 if filename[-3:].lower()=="dat":
@@ -432,7 +432,6 @@ if filename[-3:].lower()=="dat":
         st.plotly_chart(fig1, use_container_width=True) 
     with row12:
         st.plotly_chart(fig2, use_container_width=True) 
-            
         
 
 # Set up the figure
@@ -636,17 +635,18 @@ if filename[-3:].lower()=="dat":
     with row32:
         st.pyplot(fig6)    
         
-@st.experimental_memo
-def convert_df(df):
-   return df.to_csv(index=False).encode('utf-8')
+    @st.experimental_memo
+    def convert_df(df):
+       return df.to_csv(index=False).encode('utf-8')
 
-csv = convert_df(df)
+    csv = convert_df(df)
 
-st.download_button(
-   "Press to Download",
-   csv,
-   f"{test}_result.csv",
-   "text/csv",
-   key='download-csv'
-)
-
+    st.download_button(
+       "Press to Download",
+       csv,
+       f"{test}_result.csv",
+       "text/csv",
+       key='download-csv'
+    )
+else:
+    st.selectbox(key='input', index=0)
